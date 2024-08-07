@@ -13,7 +13,8 @@ task_table = Table(
     Column('name', String(100), nullable=False),
     Column('duration', Integer(), nullable=False),
     Column('status', String(50), default='Created'),
-    Column('created_on', DateTime(), default=datetime.now)
+    Column('created_on', DateTime(), default=datetime.now),
+    Column('result', String(200))
 )
 
 app = Flask(__name__)
@@ -24,8 +25,7 @@ def status_page(hash):
     s = task_table.select().where(hash==task_table.c.hash)
     with engine.connect() as conn:
         r = conn.execute(s).fetchone()
-        print(r)
-        return jsonify(*r)
+        return render_template('status.html', hash=hash, name=r.name, status=r.status, result=r.result)
 
 
 if __name__ == '__main__':

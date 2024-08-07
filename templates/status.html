@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Status</title>
+</head>
+<body>
+<h1>Hash: {{ hash }}</h1>
+<h1>Name: {{ name }}</h1>
+<h1>Status: {{ status }}</h1>
+{% if status == "done" %}
+<h1>Result: {{ result }}</h1>
+{% endif %}
+</body>
+</html>
